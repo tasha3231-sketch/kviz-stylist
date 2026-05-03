@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maria Ivanova - Premium Stylist Quiz</title>
+    
+    <!-- Подключаем Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Подключаем иконки Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Подключаем премиальные шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Шрифты */
+        .font-serif-custom { font-family: 'Playfair Display', serif; }
+        .font-sans-custom { font-family: 'Montserrat', sans-serif; }
+
+        /* Базовые стили для плавных переходов */
+        body { background-color: #0a0a0a; color: #f5f5f5; }
+        
+        /* Скрываем скроллбар для эстетики */
+        ::-webkit-scrollbar { width: 0px; }
+        
+        /* --- Анимации --- */
+        @keyframes breathe {
+            0%, 100% { opacity: 0.08; transform: scale(1); }
+            50% { opacity: 0.15; transform: scale(1.05); }
+        }
+        @keyframes breathe-delayed {
+            0%, 100% { opacity: 0.05; transform: scale(1); }
+            50% { opacity: 0.12; transform: scale(1.1); }
+        }
+        
+        /* Пульсация свечения для блока оффера */
+        @keyframes offer-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(209,176,122,0.15), inset 0 0 10px rgba(209,176,122,0.05); border-color: rgba(209,176,122,0.3); }
+            50% { box-shadow: 0 0 50px rgba(209,176,122,0.4), inset 0 0 20px rgba(209,176,122,0.15); border-color: rgba(209,176,122,0.6); }
+        }
+        
+        /* 3D Пульсация для кнопки */
+        @keyframes button-pulse-3d {
+            0%, 100% { 
+                transform: scale(1) translateY(0); 
+                box-shadow: 0 10px 20px rgba(209,176,122,0.3), inset 0 2px 2px rgba(255,255,255,0.4), inset 0 -4px 4px rgba(0,0,0,0.3); 
+            }
+            50% { 
+                transform: scale(1.02) translateY(-2px); 
+                box-shadow: 0 20px 40px rgba(209,176,122,0.5), inset 0 2px 2px rgba(255,255,255,0.5), inset 0 -4px 4px rgba(0,0,0,0.3); 
+            }
+        }
+
+        .animate-glow-1 { animation: breathe 8s ease-in-out infinite; }
+        .animate-glow-2 { animation: breathe-delayed 10s ease-in-out infinite 2s; }
+        .animate-offer-glow { animation: offer-glow 3s infinite ease-in-out; }
+        .animate-button-3d { animation: button-pulse-3d 2s infinite ease-in-out; }
+    </style>
+</head>
+<body class="relative min-h-screen overflow-x-hidden pb-20">
+
+    <!-- Фоновое изображение (размытый интерьер премиального магазина) -->
+    <div class="fixed inset-0 z-0 pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; filter: blur(12px); transform: scale(1.1);"></div>
+    
+    <!-- Темная полупрозрачная подложка с градиентом для глубины -->
+    <div class="fixed inset-0 z-0 bg-gradient-to-b from-[#0a0a0a]/90 via-[#0a0a0a]/70 to-[#0a0a0a]/95 pointer-events-none"></div>
+
+    <!-- Мягкое анимированное свечение (объем и глубина) -->
+    <div class="fixed top-1/4 -left-10 w-[50vw] h-[50vw] max-w-[800px] max-h-[800px] bg-[#D1B07A] rounded-full blur-[150px] mix-blend-screen pointer-events-none animate-glow-1 z-0"></div>
+    <div class="fixed bottom-1/4 -right-10 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-[#D1B07A] rounded-full blur-[120px] mix-blend-screen pointer-events-none animate-glow-2 z-0"></div>
+
+    <!-- Контентная часть поверх фона -->
+    <div class="relative z-10">
+        
+        <!-- Навигация/Логотип -->
+        <header class="relative z-[60] py-4 md:py-6 px-6 flex justify-center items-center max-w-7xl mx-auto border-b border-[#222]/50 backdrop-blur-sm bg-[#0a0a0a]/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+            <div class="font-serif-custom text-xl md:text-2xl text-white tracking-widest uppercase text-center drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                Maria Ivanova <span class="block text-[9px] md:text-[10px] tracking-[0.3em] text-[#D1B07A] mt-1 font-sans-custom">Stylist</span>
+            </div>
+        </header>
+
+        <!-- Основной контент с анимацией fade -->
+        <main id="main-content" class="transition-opacity duration-500 ease-in-out opacity-100">
+            
+            <!-- Экран 0: Intro -->
+            <div id="screen-0" class="screen flex flex-col items-center justify-start min-h-[85vh] text-center max-w-4xl mx-auto px-4 pt-4 md:pt-10">
+                <h1 class="font-serif-custom text-4xl md:text-6xl font-normal leading-tight mb-4 text-white drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                    Я не подбираю вещи.<br />
+                    <span class="text-[#D1B07A] drop-shadow-[0_0_15px_rgba(209,176,122,0.4)]">Я создаю ваш образ силы.</span>
+                </h1>
+                
+                <p class="font-sans-custom text-base md:text-xl text-[#cccccc] mb-8 leading-relaxed max-w-2xl font-light drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                    Стиль — это не про одежду. Это про стратегию, которая работает на вашу жизнь: в карьере, в окружении, в ощущении себя.
+                </p>
+
+                <div class="relative w-full max-w-lg bg-[#0a0a0a]/80 backdrop-blur-md border border-[#D1B07A]/40 p-8 md:p-10 animate-offer-glow rounded-2xl mt-4 z-20">
+                    <h3 class="font-serif-custom text-2xl md:text-3xl text-white mb-4 leading-snug drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">
+                        Ваш образ вас <span class="text-[#D1B07A]">усиливает?</span>
+                    </h3>
+                    <p class="font-sans-custom text-[#b3b3b3] font-light leading-relaxed mb-8 text-sm md:text-base">
+                        Пройдите короткий разбор и увидите, где ваш гардероб работает на вас, а где тормозит.
+                    </p>
+                    <button onclick="handleNextStep()" class="font-sans-custom group relative flex items-center justify-center gap-3 px-8 py-5 text-[#1a1a1a] uppercase tracking-wider text-sm font-semibold w-full rounded-xl transition-all duration-300 animate-button-3d bg-gradient-to-b from-[#e6c697] to-[#b8955c] hover:brightness-110 active:transform active:scale-95 active:translate-y-1 active:shadow-[0_5px_10px_rgba(209,176,122,0.3),inset_0_2px_4px_rgba(0,0,0,0.4)]">
+                        Пройти разбор
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500 text-[#1a1a1a]"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Экран 1-7: Questions -->
+            <div id="screen-question" class="screen hidden flex-col w-full max-w-2xl mx-auto px-4 mt-6 md:mt-12">
+                <div class="flex justify-between items-center mb-8">
+                    <button onclick="handlePrevStep()" class="font-sans-custom flex items-center gap-2 text-[#808080] hover:text-[#D1B07A] transition-colors text-xs uppercase tracking-widest font-medium">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Назад
+                    </button>
+                    <button onclick="handleRestart()" class="font-sans-custom flex items-center gap-2 text-[#555] hover:text-white transition-colors text-xs uppercase tracking-widest font-medium">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> В начало
+                    </button>
+                </div>
+
+                <div class="w-full h-1 bg-[#222] mb-12 rounded-full overflow-visible relative">
+                    <div id="progress-bar" class="absolute top-0 left-0 h-full bg-[#D1B07A] transition-all duration-700 ease-out shadow-[0_0_15px_#D1B07A] rounded-full" style="width: 0%"></div>
+                </div>
+
+                <div id="question-counter" class="font-sans-custom text-[#D1B07A] text-sm tracking-widest uppercase mb-4 font-medium">
+                    Вопрос 1 <span class="text-[#555]">/ 7</span>
+                </div>
+
+                <h2 id="question-title" class="font-serif-custom text-3xl md:text-4xl text-white mb-10 leading-snug drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">
+                    Вопрос
+                </h2>
+
+                <div id="options-container" class="flex flex-col gap-4">
+                    <!-- Опции генерируются через JS -->
+                </div>
+            </div>
+
+            <!-- Экран 8: Loading -->
+            <div id="screen-8" class="screen hidden flex-col items-center justify-center min-h-[60vh] text-center max-w-md mx-auto px-4">
+                <i data-lucide="loader-2" class="w-14 h-14 text-[#D1B07A] animate-spin mb-8 drop-shadow-[0_0_15px_rgba(209,176,122,0.8)]"></i>
+                <h2 class="font-serif-custom text-2xl text-white mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">Анализирую ваши ответы...</h2>
+                <p class="font-sans-custom text-[#808080] font-light">Собираю индивидуальный профиль стиля</p>
+            </div>
+
+            <!-- Экран 9: Result -->
+            <div id="screen-9" class="screen hidden flex-col items-center text-center max-w-2xl mx-auto px-4 mt-12 md:mt-24">
+                <div class="font-sans-custom text-[#808080] text-sm tracking-widest uppercase mb-6">Ваш результат</div>
+                <h2 id="result-title" class="font-serif-custom text-4xl md:text-5xl mb-8 text-[#D1B07A] drop-shadow-[0_0_20px_rgba(209,176,122,0.4)]">«Результат»</h2>
+                <p id="result-desc" class="font-sans-custom text-lg md:text-xl text-[#cccccc] font-light leading-relaxed mb-12">Описание</p>
+                <button onclick="handleNextStep()" class="font-sans-custom group relative flex items-center justify-center gap-3 px-10 py-5 bg-[#D1B07A] text-black uppercase tracking-wider font-medium hover:bg-white hover:shadow-[0_0_40px_rgba(209,176,122,0.6)] hover:-translate-y-1 shadow-[0_0_20px_rgba(209,176,122,0.3)] transition-all duration-500 w-full sm:w-auto rounded-lg">
+                    Получить детальный разбор
+                    <i data-lucide="chevron-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500"></i>
+                </button>
+            </div>
+
+            <!-- Экран 10: Form -->
+            <div id="screen-10" class="screen hidden flex-col max-w-xl mx-auto px-4 mt-12 md:mt-24">
+                <h2 class="font-serif-custom text-3xl md:text-4xl text-white mb-6 text-center drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">Получить персональный разбор</h2>
+                <p class="font-sans-custom text-lg text-[#b3b3b3] font-light text-center mb-10">Оставьте контакт — я напишу вам и мы разберём ваш стиль на ваших примерах.</p>
+                
+                <form id="lead-form" onsubmit="handleSubmitForm(event)" class="flex flex-col gap-6">
+                    <div>
+                        <label class="font-sans-custom block text-sm text-[#808080] uppercase tracking-wider mb-2">Ваше имя</label>
+                        <input id="input-name" oninput="handleInput()" type="text" required class="font-sans-custom w-full bg-transparent border border-[#333] focus:border-[#D1B07A] outline-none text-white text-lg py-3 px-4 transition-all duration-500 focus:shadow-[0_10px_15px_-10px_rgba(209,176,122,0.3)] rounded-lg" placeholder="Анна">
+                    </div>
+                    <div>
+                        <label class="font-sans-custom block text-sm text-[#808080] uppercase tracking-wider mb-2">Telegram / Instagram</label>
+                        <input id="input-contact" oninput="handleInput()" type="text" required class="font-sans-custom w-full bg-transparent border border-[#333] focus:border-[#D1B07A] outline-none text-white text-lg py-3 px-4 transition-all duration-500 focus:shadow-[0_10px_15px_-10px_rgba(209,176,122,0.3)] rounded-lg" placeholder="@username">
+                    </div>
+                    
+                    <div class="flex items-center gap-3 mt-2 text-[#D1B07A]">
+                        <i data-lucide="check" class="w-5 h-5 drop-shadow-[0_0_8px_rgba(209,176,122,0.6)]"></i>
+                        <span class="font-sans-custom italic font-light">Я напишу лично</span>
+                    </div>
+
+                    <!-- Согласие на обработку данных -->
+                    <div class="flex items-start gap-3 mt-2">
+                        <div class="relative flex items-center pt-1">
+                            <input type="checkbox" id="consent" required class="w-4 h-4 rounded-sm border-[#333] bg-transparent text-[#D1B07A] focus:ring-0 cursor-pointer accent-[#D1B07A]">
+                        </div>
+                        <label for="consent" class="font-sans-custom text-xs text-[#808080] font-light cursor-pointer leading-relaxed">
+                            Я даю согласие на <a href="#" class="border-b border-[#555] hover:text-[#D1B07A] hover:border-[#D1B07A] transition-colors">обработку персональных данных</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="font-sans-custom group mt-6 flex items-center justify-center gap-3 px-10 py-5 bg-[#D1B07A] text-black uppercase tracking-wider font-medium hover:bg-white hover:shadow-[0_0_40px_rgba(209,176,122,0.6)] hover:-translate-y-1 shadow-[0_0_20px_rgba(209,176,122,0.3)] transition-all duration-500 w-full rounded-lg">
+                        Отправить
+                        <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"></i>
+                    </button>
+
+                    <button type="button" onclick="handleRestart()" class="font-sans-custom mt-4 flex items-center justify-center gap-2 text-[#808080] hover:text-[#D1B07A] uppercase tracking-widest text-xs font-medium transition-colors">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Пройти разбор ещё раз
+                    </button>
+                </form>
+            </div>
+
+            <!-- Экран 11: Thanks -->
+            <div id="screen-11" class="screen hidden flex-col items-center justify-center min-h-[70vh] text-center max-w-2xl mx-auto px-4">
+                <div class="w-20 h-20 rounded-full border-2 border-[#D1B07A] flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(209,176,122,0.3)]">
+                    <i data-lucide="check" class="w-10 h-10 text-[#D1B07A] drop-shadow-[0_0_10px_rgba(209,176,122,0.6)]"></i>
+                </div>
+                <h2 class="font-serif-custom text-3xl md:text-4xl text-white mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">Заявка принята</h2>
+                <p class="font-sans-custom text-lg text-[#cccccc] font-light mb-12">Скоро я свяжусь с вами по указанным контактам.</p>
+                <button onclick="handleRestart()" class="font-sans-custom mb-16 flex items-center justify-center gap-3 px-8 py-4 border border-[#333] text-[#b3b3b3] uppercase tracking-wider text-xs font-medium hover:border-[#D1B07A] hover:text-[#D1B07A] hover:shadow-[0_0_30px_rgba(209,176,122,0.15)] transition-all duration-300 rounded-lg">
+                    Пройти разбор ещё раз
+                </button>
+            </div>
+
+            <!-- Экран 12: B2B Offer -->
+            <div id="screen-12" class="screen hidden flex-col items-center justify-center min-h-[75vh] text-center max-w-2xl mx-auto px-4">
+                <div class="w-full max-w-lg bg-[#0a0a0a]/90 backdrop-blur-md border border-[#D1B07A]/20 p-10 md:p-12 rounded-2xl shadow-[0_0_40px_rgba(209,176,122,0.1),inset_0_0_20px_rgba(209,176,122,0.03)] relative overflow-hidden">
+                    <div class="font-sans-custom text-[#D1B07A] text-xs tracking-widest uppercase mb-6 font-medium">О проекте</div>
+                    
+                    <p class="font-sans-custom text-base md:text-lg text-[#cccccc] font-light mb-6 leading-relaxed">
+                        Этот квиз — <span class="text-white">демо-версия</span>, созданная для наглядной демонстрации логики и механики работы интеллектуальных воронок.
+                    </p>
+                    
+                    <div class="w-12 h-[1px] bg-[#333] mx-auto mb-6"></div>
+                    
+                    <p class="font-sans-custom text-sm md:text-base text-[#808080] font-light mb-10 leading-relaxed">
+                        Если вам понравился формат и вы хотите внедрить подобный стильный инструмент для своего продукта или услуги:
+                    </p>
+                    
+                    <a href="https://t.me/tatishablin" target="_blank" class="font-sans-custom inline-flex items-center justify-center gap-3 text-[#D1B07A] hover:text-white transition-all duration-300 uppercase tracking-widest text-sm font-semibold">
+                        <i data-lucide="send" class="w-5 h-5"></i> НАПИСАТЬ @TATISHABLIN
+                    </a>
+                </div>
+                <button onclick="handleRestart()" class="font-sans-custom mt-12 flex items-center justify-center gap-2 text-[#555] hover:text-[#D1B07A] uppercase tracking-widest text-xs font-medium transition-colors">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Пройти разбор ещё раз
+                </button>
+            </div>
+
+        </main>
+
+        <!-- Футер -->
+        <footer id="footer" class="font-sans-custom fixed bottom-0 w-full p-6 text-center border-t border-[#1a1a1a]/50 bg-[#0a0a0a]/70 backdrop-blur-md z-20">
+            <p class="text-[#666] text-xs tracking-wider uppercase">
+                Разработка логики и квизов — <a href="https://t.me/tatishablin" target="_blank" class="text-[#D1B07A] hover:text-white transition-colors">@tatishablin</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Логика приложения на чистом JS -->
+    <script>
+        // Инициализация иконок
+        lucide.createIcons();
+
+        // Данные квиза с бальной системой
+        const questions = [
+            { 
+                id: 1, 
+                title: 'Какую одежду вы выбираете чаще всего?', 
+                options: [
+                    { text: 'Хочется интереснее, но не всегда получается', type: 'eclectic' },
+                    { text: 'Аккуратно и собранно (классика, деловой стиль)', type: 'status' },
+                    { text: 'Простые сочетания (база, джинсы, футболки)', type: 'casual' }
+                ] 
+            },
+            { 
+                id: 2, 
+                title: 'Как бы вы описали свой текущий стиль?', 
+                options: [
+                    { text: 'Смешанный, без чёткого направления', type: 'eclectic' },
+                    { text: 'Строгий, деловой и понятный', type: 'status' },
+                    { text: 'Кэжуал, расслабленный и комфортный', type: 'casual' }
+                ] 
+            },
+            { 
+                id: 3, 
+                title: 'В каких ситуациях вы чаще всего чувствуете дискомфорт?', 
+                options: [
+                    { text: 'Мероприятия и светские выходы', type: 'eclectic' },
+                    { text: 'Рабочие встречи и переговоры', type: 'status' },
+                    { text: 'В повседневной рутине (кажется, что выгляжу скучно)', type: 'casual' }
+                ] 
+            },
+            { 
+                id: 4, 
+                title: 'Как обычно проходит ваш процесс сбора куда-либо?', 
+                options: [
+                    { text: 'Сомневаюсь, переодеваюсь, не понимаю почему так получилось', type: 'eclectic' },
+                    { text: 'Планирую заранее, но образ часто кажется слишком пресным', type: 'status' },
+                    { text: 'Беру первое удобное, чтобы меньше думать', type: 'casual' }
+                ] 
+            },
+            { 
+                id: 5, 
+                title: 'Какого эффекта вы хотите достичь своим образом?', 
+                options: [
+                    { text: 'Заметность, характер и уверенность', type: 'eclectic' },
+                    { text: 'Статус, влияние, рост и профессионализм', type: 'status' },
+                    { text: 'Меньше думать, быстрее собираться, чувствовать себя собой', type: 'casual' }
+                ] 
+            },
+            { 
+                id: 6, 
+                title: 'Какую главную задачу должен решать ваш гардероб?', 
+                options: [
+                    { text: 'Собрать мой стиль в единую, выразительную систему', type: 'eclectic' },
+                    { text: 'Транслировать вес и экспертность в моем деле', type: 'status' },
+                    { text: 'Сохранить удобство, но добавить вкус и акценты', type: 'casual' }
+                ] 
+            },
+            { 
+                id: 7, 
+                title: 'Насколько вы готовы к изменениям прямо сейчас?', 
+                options: [
+                    { text: 'Готова искать свой стержень и пробовать новое', type: 'eclectic' },
+                    { text: 'Готова добавить структуру и силу без перегруза', type: 'status' },
+                    { text: 'Мне нужны точечные правки для собранности', type: 'casual' }
+                ] 
+            }
+        ];
+
+        const results = {
+            eclectic: { 
+                title: 'Смешанный стиль (эклектика)', 
+                desc: 'Вы интуитивно тянетесь к интересным сочетаниям, но пока не нашли формулу, которая свяжет все элементы воедино. Вам нужен вектор, чтобы образ выглядел «дорого», а не случайно.' 
+            },
+            status: { 
+                title: 'Статусный минимализм', 
+                desc: 'Вам важен комфорт, но при этом вы хотите транслировать влияние. Ваш путь — это лаконичные формы, глубокие цвета и идеальная посадка, которая говорит сама за себя.' 
+            },
+            casual: { 
+                title: 'Осознанный кэжуал', 
+                desc: 'Вы устали от долгих сборов и хотите, чтобы вещи работали на вас. Вам нужна умная капсула: минимум вещей, максимум сочетаний и 100% уверенность каждый день.' 
+            }
+        };
+
+        // Состояние приложения
+        let step = 0;
+        let answers = {}; // формат: { questionId: { text: '...', type: '...' } }
+        let formData = { name: '', contact: '' };
+        let isAnimating = false;
+        let formTimer = null;
+
+        // Основная функция рендера (переключения экранов)
+        function updateView() {
+            // Прячем все экраны
+            document.querySelectorAll('.screen').forEach(el => {
+                if (!el.classList.contains('hidden')) el.classList.add('hidden');
+            });
+
+            const footer = document.getElementById('footer');
+
+            // Показываем нужный экран
+            if (step === 0) {
+                document.getElementById('screen-0').classList.remove('hidden');
+                footer.classList.remove('hidden');
+            } else if (step >= 1 && step <= 7) {
+                document.getElementById('screen-question').classList.remove('hidden');
+                footer.classList.add('hidden');
+                renderQuestionScreen();
+            } else if (step === 8) {
+                document.getElementById('screen-8').classList.remove('hidden');
+                footer.classList.add('hidden');
+            } else if (step === 9) {
+                document.getElementById('screen-9').classList.remove('hidden');
+                footer.classList.add('hidden');
+                renderResultScreen();
+            } else if (step === 10) {
+                document.getElementById('screen-10').classList.remove('hidden');
+                footer.classList.add('hidden');
+                startFormTimer(); // Запускаем таймер бездействия
+            } else if (step === 11) {
+                document.getElementById('screen-11').classList.remove('hidden');
+                footer.classList.remove('hidden');
+            } else if (step === 12) {
+                document.getElementById('screen-12').classList.remove('hidden');
+                footer.classList.remove('hidden');
+            }
+
+            lucide.createIcons(); // Обновляем иконки
+        }
+
+        // Рендер конкретного вопроса
+        function renderQuestionScreen() {
+            const qIndex = step - 1;
+            const question = questions[qIndex];
+            const progress = ((qIndex + 1) / questions.length) * 100;
+
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('question-counter').innerHTML = `Вопрос ${qIndex + 1} <span class="text-[#555]">/ ${questions.length}</span>`;
+            document.getElementById('question-title').innerText = question.title;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((opt, idx) => {
+                const isSelected = answers[question.id] && answers[question.id].text === opt.text;
+                const btn = document.createElement('button');
+                
+                // Классы в зависимости от того, выбран ли ответ
+                const baseClasses = 'font-sans-custom text-left p-6 border transition-all duration-500 group relative overflow-hidden backdrop-blur-md rounded-xl';
+                const selectedClasses = 'border-[#D1B07A] bg-[#D1B07A]/10 text-white shadow-[0_0_40px_rgba(209,176,122,0.3),inset_0_0_15px_rgba(209,176,122,0.1)] -translate-y-1';
+                const defaultClasses = 'border-[#333333] bg-[#0a0a0a]/60 shadow-[0_0_15px_rgba(255,255,255,0.03)] hover:border-[#D1B07A]/70 text-[#cccccc] hover:text-white hover:shadow-[0_0_40px_rgba(209,176,122,0.2)] hover:-translate-y-1';
+                
+                btn.className = `${baseClasses} ${isSelected ? selectedClasses : defaultClasses}`;
+                
+                btn.innerHTML = `
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#D1B07A]/0 via-[#D1B07A]/5 to-[#D1B07A]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isSelected ? 'opacity-100' : ''}"></div>
+                    <div class="flex justify-between items-center relative z-10">
+                        <span class="text-lg font-light leading-relaxed">${opt.text}</span>
+                        <div class="w-6 h-6 rounded-full border flex items-center justify-center transition-all duration-500 ${isSelected ? 'border-[#D1B07A] bg-[#D1B07A] shadow-[0_0_15px_#D1B07A]' : 'border-[#555] group-hover:border-[#D1B07A]/80 group-hover:shadow-[0_0_10px_rgba(209,176,122,0.3)]'}">
+                            ${isSelected ? '<i data-lucide="check" class="w-4 h-4 text-black"></i>' : ''}
+                        </div>
+                    </div>
+                `;
+                
+                btn.onclick = () => handleOptionSelect(question.id, opt.text, opt.type);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        // Подготовка экрана результатов
+        function renderResultScreen() {
+            const resultData = calculateResult();
+            document.getElementById('result-title').innerText = `«${resultData.title}»`;
+            document.getElementById('result-desc').innerText = resultData.desc;
+        }
+
+        // Логика переходов
+        function changeStepWithAnimation(newStep) {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            const main = document.getElementById('main-content');
+            main.classList.remove('opacity-100');
+            main.classList.add('opacity-0');
+
+            setTimeout(() => {
+                step = newStep;
+                updateView();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                main.classList.remove('opacity-0');
+                main.classList.add('opacity-100');
+                isAnimating = false;
+            }, 400);
+        }
+
+        function handleNextStep() {
+            changeStepWithAnimation(step + 1);
+        }
+
+        function handlePrevStep() {
+            changeStepWithAnimation(step - 1);
+        }
+
+        function handleOptionSelect(questionId, optionText, optionType) {
+            answers[questionId] = { text: optionText, type: optionType };
+            updateView(); // Перерисовываем, чтобы показать галочку на выбранном
+            
+            setTimeout(() => {
+                if (step < questions.length) {
+                    handleNextStep();
+                } else {
+                    goToResults();
+                }
+            }, 300);
+        }
+
+        function goToResults() {
+            changeStepWithAnimation(8); // Идем на экран загрузки
+            setTimeout(() => {
+                changeStepWithAnimation(9); // Через 2 секунды показываем результат
+            }, 2400); // 400мс анимация + 2000мс показ лоадера
+        }
+
+        // Балльная система подсчета результата
+        function calculateResult() {
+            const scores = { eclectic: 0, status: 0, casual: 0 };
+            
+            // Считаем баллы за каждый тип ответа
+            for (let key in answers) {
+                if (answers[key] && answers[key].type) {
+                    scores[answers[key].type]++;
+                }
+            }
+            
+            // Находим тип с максимальным количеством баллов
+            let maxType = 'eclectic'; // по умолчанию
+            let maxScore = -1;
+            
+            for (let type in scores) {
+                if (scores[type] > maxScore) {
+                    maxScore = scores[type];
+                    maxType = type;
+                }
+            }
+            
+            return results[maxType];
+        }
+
+        function handleRestart() {
+            answers = {};
+            formData = { name: '', contact: '' };
+            document.getElementById('input-name').value = '';
+            document.getElementById('input-contact').value = '';
+            clearTimeout(formTimer);
+            changeStepWithAnimation(0);
+        }
+
+        // Логика работы с формой (таймер бездействия)
+        function handleInput() {
+            formData.name = document.getElementById('input-name').value;
+            formData.contact = document.getElementById('input-contact').value;
+            
+            // Если пользователь начал вводить данные, отменяем переход к B2B офферу
+            clearTimeout(formTimer);
+        }
+
+        function startFormTimer() {
+            clearTimeout(formTimer);
+            if (step === 10 && !formData.name && !formData.contact) {
+                formTimer = setTimeout(() => {
+                    changeStepWithAnimation(12);
+                }, 3000); // 3 секунды бездействия
+            }
+        }
+
+        // Отправка формы
+        function handleSubmitForm(e) {
+            e.preventDefault();
+            if (!formData.name || !formData.contact) return;
+
+            const userResult = calculateResult().title;
+            
+            const telegramMessage = `
+Новая заявка с квиза «Стиль»
+Имя: ${formData.name}
+Контакт: ${formData.contact}
+
+Результат: 
+${userResult}
+
+Ответы:
+1. Одежда: ${answers[1] ? answers[1].text : ''}
+2. Стиль: ${answers[2] ? answers[2].text : ''}
+3. Где дискомфорт: ${answers[3] ? answers[3].text : ''}
+4. Сбор: ${answers[4] ? answers[4].text : ''}
+5. Хочу: ${answers[5] ? answers[5].text : ''}
+6. Задача: ${answers[6] ? answers[6].text : ''}
+7. Готовность: ${answers[7] ? answers[7].text : ''}
+            `.trim();
+
+            console.log("=== СООБЩЕНИЕ ДЛЯ TELEGRAM БОТА ===");
+            console.log(telegramMessage);
+            console.log("=====================================");
+
+            handleNextStep(); // Переход на экран благодарности
+        }
+
+        // Первичный рендер при загрузке страницы
+        updateView();
+    </script>
+</body>
+</html>
