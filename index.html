@@ -59,7 +59,7 @@
         .animate-button-3d { animation: button-pulse-3d 2s infinite ease-in-out; }
     </style>
 </head>
-<body class="relative min-h-screen overflow-x-hidden pb-24 md:pb-20">
+<body class="relative min-h-screen overflow-x-hidden pb-10">
 
     <!-- Фоновое изображение (размытый интерьер премиального магазина) -->
     <div class="fixed inset-0 z-0 pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; filter: blur(12px); transform: scale(1.1);"></div>
@@ -85,7 +85,7 @@
         <main id="main-content" class="transition-opacity duration-500 ease-in-out opacity-100">
             
             <!-- Экран 0: Intro -->
-            <div id="screen-0" class="screen flex flex-col items-center justify-start min-h-[85vh] text-center max-w-4xl mx-auto px-4 pt-6 md:pt-10">
+            <div id="screen-0" class="screen flex flex-col items-center justify-start min-h-[85vh] text-center max-w-4xl mx-auto px-4 pt-6 md:pt-10 mb-8">
                 <h1 class="font-serif-custom text-3xl sm:text-4xl md:text-6xl font-normal leading-tight mb-3 md:mb-4 text-white drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
                     Я не подбираю вещи.<br />
                     <span class="text-[#D1B07A] drop-shadow-[0_0_15px_rgba(209,176,122,0.4)]">Я создаю ваш образ силы.</span>
@@ -110,7 +110,7 @@
             </div>
 
             <!-- Экран 1-7: Questions -->
-            <div id="screen-question" class="screen hidden flex-col w-full max-w-2xl mx-auto px-4 mt-6 md:mt-12">
+            <div id="screen-question" class="screen hidden flex-col w-full max-w-2xl mx-auto px-4 mt-6 md:mt-12 mb-8">
                 <div class="flex justify-between items-center mb-6 md:mb-8">
                     <button onclick="handlePrevStep()" class="font-sans-custom flex items-center gap-2 text-[#808080] hover:text-[#D1B07A] transition-colors text-[10px] md:text-xs uppercase tracking-widest font-medium">
                         <i data-lucide="arrow-left" class="w-3 h-3 md:w-4 md:h-4"></i> Назад
@@ -145,7 +145,7 @@
             </div>
 
             <!-- Экран 9: Result -->
-            <div id="screen-9" class="screen hidden flex-col items-center text-center max-w-2xl mx-auto px-4 mt-8 md:mt-24">
+            <div id="screen-9" class="screen hidden flex-col items-center text-center max-w-2xl mx-auto px-4 mt-8 md:mt-24 mb-10">
                 <div class="font-sans-custom text-[#808080] text-xs md:text-sm tracking-widest uppercase mb-4 md:mb-6">Ваш результат</div>
                 <h2 id="result-title" class="font-serif-custom text-3xl md:text-5xl mb-6 md:mb-8 text-[#D1B07A] drop-shadow-[0_0_20px_rgba(209,176,122,0.4)]">«Результат»</h2>
                 <p id="result-desc" class="font-sans-custom text-base md:text-xl text-[#cccccc] font-light leading-relaxed mb-8 md:mb-12">Описание</p>
@@ -156,7 +156,7 @@
             </div>
 
             <!-- Экран 10: Form -->
-            <div id="screen-10" class="screen hidden flex-col max-w-xl mx-auto px-4 mt-8 md:mt-24">
+            <div id="screen-10" class="screen hidden flex-col max-w-xl mx-auto px-4 mt-8 md:mt-24 mb-10">
                 <h2 class="font-serif-custom text-2xl md:text-4xl text-white mb-4 md:mb-6 text-center drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">Получить персональный разбор</h2>
                 <p class="font-sans-custom text-sm md:text-lg text-[#b3b3b3] font-light text-center mb-8 md:mb-10">Оставьте контакт — я напишу вам и мы разберём ваш стиль на ваших примерах.</p>
                 
@@ -197,7 +197,7 @@
             </div>
 
             <!-- Экран 11: Thanks -->
-            <div id="screen-11" class="screen hidden flex-col items-center justify-center min-h-[70vh] text-center max-w-2xl mx-auto px-4">
+            <div id="screen-11" class="screen hidden flex-col items-center justify-center min-h-[70vh] text-center max-w-2xl mx-auto px-4 mb-10">
                 <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[#D1B07A] flex items-center justify-center mb-6 md:mb-8 shadow-[0_0_30px_rgba(209,176,122,0.3)]">
                     <i data-lucide="check" class="w-8 h-8 md:w-10 md:h-10 text-[#D1B07A] drop-shadow-[0_0_10px_rgba(209,176,122,0.6)]"></i>
                 </div>
@@ -209,7 +209,7 @@
             </div>
 
             <!-- Экран 12: B2B Offer -->
-            <div id="screen-12" class="screen hidden flex-col items-center justify-center min-h-[75vh] text-center max-w-2xl mx-auto px-4 mt-8 md:mt-0">
+            <div id="screen-12" class="screen hidden flex-col items-center justify-center min-h-[75vh] text-center max-w-2xl mx-auto px-4 mt-8 md:mt-0 pb-24">
                 <div class="w-full max-w-lg bg-[#0a0a0a]/90 backdrop-blur-md border border-[#D1B07A]/20 p-6 md:p-12 rounded-2xl shadow-[0_0_40px_rgba(209,176,122,0.1),inset_0_0_20px_rgba(209,176,122,0.03)] relative overflow-hidden">
                     <div class="font-sans-custom text-[#D1B07A] text-[10px] md:text-xs tracking-widest uppercase mb-4 md:mb-6 font-medium">О проекте</div>
                     
@@ -234,8 +234,8 @@
 
         </main>
 
-        <!-- Футер -->
-        <footer id="footer" class="font-sans-custom fixed bottom-0 w-full p-4 md:p-6 text-center border-t border-[#1a1a1a]/50 bg-[#0a0a0a]/70 backdrop-blur-md z-20">
+        <!-- Футер (Отображается только на последнем экране 12) -->
+        <footer id="footer" class="font-sans-custom fixed bottom-0 w-full p-4 md:p-6 text-center border-t border-[#1a1a1a]/50 bg-[#0a0a0a]/70 backdrop-blur-md z-20 hidden">
             <p class="text-[#666] text-[10px] md:text-xs tracking-wider uppercase">
                 Разработка логики и квизов — <a href="https://t.me/tatishablin" target="_blank" class="text-[#D1B07A] hover:text-white transition-colors">@tatishablin</a>
             </p>
@@ -348,28 +348,28 @@
             // Показываем нужный экран
             if (step === 0) {
                 document.getElementById('screen-0').classList.remove('hidden');
-                footer.classList.remove('hidden');
+                footer.classList.add('hidden'); // Скрываем футер
             } else if (step >= 1 && step <= 7) {
                 document.getElementById('screen-question').classList.remove('hidden');
-                footer.classList.add('hidden');
+                footer.classList.add('hidden'); // Скрываем футер
                 renderQuestionScreen();
             } else if (step === 8) {
                 document.getElementById('screen-8').classList.remove('hidden');
-                footer.classList.add('hidden');
+                footer.classList.add('hidden'); // Скрываем футер
             } else if (step === 9) {
                 document.getElementById('screen-9').classList.remove('hidden');
-                footer.classList.add('hidden');
+                footer.classList.add('hidden'); // Скрываем футер
                 renderResultScreen();
             } else if (step === 10) {
                 document.getElementById('screen-10').classList.remove('hidden');
-                footer.classList.add('hidden');
-                startFormTimer(); // Запускаем таймер бездействия
+                footer.classList.add('hidden'); // Скрываем футер
+                startFormTimer(); 
             } else if (step === 11) {
                 document.getElementById('screen-11').classList.remove('hidden');
-                footer.classList.remove('hidden');
+                footer.classList.add('hidden'); // Скрываем футер
             } else if (step === 12) {
                 document.getElementById('screen-12').classList.remove('hidden');
-                footer.classList.remove('hidden');
+                footer.classList.remove('hidden'); // Показываем футер ТОЛЬКО на последнем экране
             }
 
             lucide.createIcons(); // Обновляем иконки
